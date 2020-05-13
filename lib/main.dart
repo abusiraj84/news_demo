@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:news_demo/blocks/theme.dart';
+import 'package:provider/provider.dart';
 
 import 'Screens/HomeScreen.dart';
 
@@ -20,6 +22,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider<ThemeProvider>(
+      create: (_) => ThemeProvider(isDarkMode: false),
+      child: MaterialAppWithTheme(),
+    );
+  }
+}
+
+class MaterialAppWithTheme extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
@@ -30,10 +43,10 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         const Locale('ar'), // arabic
       ],
-      theme: ThemeData(
-        fontFamily: "SST-Arabic-Medium",
-      ),
+      theme: theme.getTheme(),
       home: HomeScreen(),
     );
   }
 }
+
+//  fontFamily: "SST-Arabic-Medium",

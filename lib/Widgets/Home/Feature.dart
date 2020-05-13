@@ -78,8 +78,10 @@ class Feature extends StatelessWidget {
             featureTitle,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 20,
+              fontSize: 24,
+              height: 1.5,
             ),
+            maxLines: 2,
           ),
           // Meta
           Container(

@@ -37,6 +37,9 @@ dependencies:
   share: ^0.6.3+6
   flutter_svg: ^0.17.4
   bot_toast: ^2.3.0
+  provider:
+  shared_preferences:
+  flutter_statusbarcolor: ^0.2.3
 
 dev_dependencies:
   flutter_test:

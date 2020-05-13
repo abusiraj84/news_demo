@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_demo/blocks/theme.dart';
+import 'package:provider/provider.dart';
 
 class Trend extends StatefulWidget {
   Trend({Key key}) : super(key: key);
@@ -10,6 +12,8 @@ class Trend extends StatefulWidget {
 class _TrendState extends State<Trend> {
   @override
   Widget build(BuildContext context) {
+    final _themeChanger = Provider.of<ThemeProvider>(context, listen: false);
+
     return Column(
       children: <Widget>[
         Padding(
@@ -17,21 +21,28 @@ class _TrendState extends State<Trend> {
           child: Row(
             children: <Widget>[
               //Border
-              Container(
+              AnimatedContainer(
+                duration: Duration(milliseconds: 300),
                 height: 20,
                 width: 4,
                 margin: EdgeInsets.only(left: 10),
-                color: Colors.black,
+                color: _themeChanger.getTheme() == _themeChanger.light
+                    ? _themeChanger.blueDark
+                    : Colors.white,
               ),
               //Cat Title
               Text(
                 'المتصدر',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(
+                    color: _themeChanger.getTheme() == _themeChanger.light
+                        ? _themeChanger.blueDark
+                        : Colors.white),
               )
             ],
           ),
         ),
-        Container(
+        AnimatedContainer(
+          duration: Duration(milliseconds: 300),
           margin: EdgeInsets.all(0),
           height: 150,
           child: ListView.builder(
@@ -39,24 +50,28 @@ class _TrendState extends State<Trend> {
             itemCount: 10,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
+              return AnimatedContainer(
+                duration: Duration(milliseconds: 300),
                 width: 200,
                 margin: EdgeInsets.only(right: 20, left: 5),
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: _themeChanger.getTheme() == _themeChanger.light
+                      ? _themeChanger.cardDark
+                      : Colors.white,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Container(
+                    AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
                       width: 30,
                       height: 30,
                       margin: EdgeInsets.only(left: 20),
                       decoration: BoxDecoration(
-                        color: Colors.purple,
+                        color: _themeChanger.blueDark,
                         borderRadius: BorderRadius.circular(60),
                       ),
                       child: Center(
@@ -70,7 +85,12 @@ class _TrendState extends State<Trend> {
                       child: Text(
                         'مسودة دستور الجزائر.. أبرز التعديلات وردود الفعل',
                         style: TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.bold),
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color:
+                                _themeChanger.getTheme() == _themeChanger.light
+                                    ? Colors.white
+                                    : Colors.black),
                       ),
                     ),
                   ],
